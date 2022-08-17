@@ -1,0 +1,41 @@
+﻿@page
+@model AbbyWeb.Pages.Categories.IndexModel
+@{
+  ViewData["Title"] = "Categories";
+  int count = 1;
+}
+
+<div class="row pb-3">
+    <div class="col-6"><h6>Categories</h6></div>
+    <div class="col-6">
+        <a asp-page="create" class="btn btn-sm btn-info float-end"><i class="bi bi-patch-plus-fill text-success"></i>&nbsp;Add new category</a>
+    </div>
+</div>
+
+<table class="table table-sm table-striped text-center">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">View Order</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var category in Model.Categories)
+    {
+      <tr>
+              <th scope="row">@count</th>
+              <td>@category.Name</td>
+              <td>@category.DisplayOrder</td>
+              <td>
+                  <a asp-route-id="@category.Id" asp-page="Edit" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square"></i></a> &nbsp;&nbsp;
+                  <a asp-route-id="@category.Id" asp-page="Delete" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash3-fill"></i></a>
+              </td>
+             @{
+                count++;
+              }
+       </tr>
+    }
+  </tbody>
+</table>
